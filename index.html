@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Viewer App</title>
+</head>
+<body>
+    <input type="file" id="fileInput" />
+    <pre id="xmlData"></pre>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        document.getElementById('fileInput').addEventListener('change', (event) => {
+            const filePath = event.target.files[0].path;
+            ipcRenderer.send('file-selected', filePath);
+        });
+
+        ipcRenderer.on('xml-data', (event, data) => {
+            console.log('Received XML Data:', data);
+            document.getElementById('xmlData').innerText = data;
+        });
+    </script>
+</body>
+</html>
