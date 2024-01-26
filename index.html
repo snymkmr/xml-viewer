@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,8 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
@@ -33,6 +35,7 @@
         }
     </style>
 </head>
+
 <body>
     <input type="file" id="fileInput" />
     <table id="xmlTable"></table>
@@ -57,32 +60,39 @@
             const table = document.getElementById('xmlTable');
             table.innerHTML = ''; // Clear existing content
 
-            const numRows = xmlDoc.querySelectorAll('book').length;
+            const rootElement = xmlDoc.documentElement;
 
-            // Create header row
+            if (!rootElement) {
+                console.error('Invalid XML format');
+                return;
+            }
+
             const headerRow = table.insertRow(0);
-            const headerCells = ['id', 'author', 'title', 'genre', 'price', 'publish_date', 'description'];
+
+            // Dynamically generate header cells based on XML structure
+            const headerCells = Array.from(rootElement.children[0].children).map((element) => {
+                return element.tagName;
+            });
 
             headerCells.forEach((cellName, index) => {
                 const headerCell = headerRow.insertCell(index);
                 headerCell.textContent = cellName;
             });
 
-            // Create data rows
+            const numRows = rootElement.children.length;
+
             for (let i = 0; i < numRows; i++) {
                 const dataRow = table.insertRow(i + 1);
-                const book = xmlDoc.querySelectorAll('book')[i];
 
                 headerCells.forEach((cellName, index) => {
                     const dataCell = dataRow.insertCell(index);
-                    if (cellName === 'id') {
-                        dataCell.textContent = book.getAttribute('id');
-                    } else {
-                        dataCell.textContent = book.querySelector(cellName)?.textContent || '';
-                    }
+                    const cellValue = rootElement.children[i].querySelector(cellName)?.textContent || '';
+                    dataCell.textContent = cellValue;
                 });
             }
         }
+
     </script>
 </body>
+
 </html>
