@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Viewer App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="fileInput" />
+    <table id="xmlTable"></table>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        document.getElementById('fileInput').addEventListener('change', (event) => {
+            const filePath = event.target.files[0].path;
+            ipcRenderer.send('file-selected', filePath);
+        });
+
+        ipcRenderer.on('xml-data', (event, data) => {
+            console.log('Received XML Data:', data);
+            displayXmlAsTable(data);
+        });
+
+        function displayXmlAsTable(xmlData) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlData, 'application/xml');
+
+            const table = document.getElementById('xmlTable');
+            table.innerHTML = ''; // Clear existing content
+
+            const numRows = xmlDoc.querySelectorAll('book').length;
+
+            // Create header row
+            const headerRow = table.insertRow(0);
+            const headerCells = ['id', 'author', 'title', 'genre', 'price', 'publish_date', 'description'];
+
+            headerCells.forEach((cellName, index) => {
+                const headerCell = headerRow.insertCell(index);
+                headerCell.textContent = cellName;
+            });
+
+            // Create data rows
+            for (let i = 0; i < numRows; i++) {
+                const dataRow = table.insertRow(i + 1);
+                const book = xmlDoc.querySelectorAll('book')[i];
+
+                headerCells.forEach((cellName, index) => {
+                    const dataCell = dataRow.insertCell(index);
+                    if (cellName === 'id') {
+                        dataCell.textContent = book.getAttribute('id');
+                    } else {
+                        dataCell.textContent = book.querySelector(cellName)?.textContent || '';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
