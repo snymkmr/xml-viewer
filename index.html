@@ -1,6 +1,7 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +11,20 @@
       border-collapse: collapse;
       width: 100%;
     }
-    th, td {
+
+    th,
+    td {
       border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
     }
+
     th {
       background-color: #f2f2f2;
     }
   </style>
 </head>
+
 <body>
   <input type="file" id="fileInput" />
   <div id="xmlTableContainer"></div>
@@ -45,7 +50,7 @@
 
       // Create the header row
       const headerRow = table.insertRow();
-      const headers = ['ID', 'Name', 'Price', 'Author', 'Category', 'Language', 'ISBN', 'Publish Date'];
+      const headers = Array.from(books[0].children).map((child) => child.tagName);
 
       headers.forEach((headerText) => {
         const headerCell = document.createElement('th');
@@ -59,27 +64,16 @@
 
         const newRow = table.insertRow();
 
-        const idCell = newRow.insertCell(0);
-        const nameCell = newRow.insertCell(1);
-        const priceCell = newRow.insertCell(2);
-        const authorCell = newRow.insertCell(3);
-        const categoryCell = newRow.insertCell(4);
-        const languageCell = newRow.insertCell(5);
-        const isbnCell = newRow.insertCell(6);
-        const publishDateCell = newRow.insertCell(7);
-
-        idCell.textContent = book.querySelector('id').textContent;
-        nameCell.textContent = book.querySelector('name').textContent;
-        priceCell.textContent = book.querySelector('price').textContent;
-        authorCell.textContent = book.querySelector('author').textContent;
-        categoryCell.textContent = book.querySelector('category').textContent;
-        languageCell.textContent = book.querySelector('language').textContent;
-        isbnCell.textContent = book.querySelector('ISBN').textContent;
-        publishDateCell.textContent = book.querySelector('publish_date').textContent;
+        // Iterate over child elements of the current book and create cells
+        for (let j = 0; j < book.children.length; j++) {
+          const dataCell = newRow.insertCell(j);
+          dataCell.textContent = book.children[j].textContent;
+        }
       }
 
       xmlTableContainer.appendChild(table);
     });
   </script>
 </body>
+
 </html>
