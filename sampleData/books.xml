@@ -1,120 +1,149 @@
-<?xml version="1.0"?>
-<catalog>
-   <book id="bk101">
-      <author>Gambardella, Matthew</author>
-      <title>XML Developer's Guide</title>
-      <genre>Computer</genre>
-      <price>44.95</price>
-      <publish_date>2000-10-01</publish_date>
-      <description>An in-depth look at creating applications 
-      with XML.</description>
-   </book>
-   <book id="bk102">
-      <author>Ralls, Kim</author>
-      <title>Midnight Rain</title>
-      <genre>Fantasy</genre>
-      <price>5.95</price>
-      <publish_date>2000-12-16</publish_date>
-      <description>A former architect battles corporate zombies, 
-      an evil sorceress, and her own childhood to become queen 
-      of the world.</description>
-   </book>
-   <book id="bk103">
-      <author>Corets, Eva</author>
-      <title>Maeve Ascendant</title>
-      <genre>Fantasy</genre>
-      <price>5.95</price>
-      <publish_date>2000-11-17</publish_date>
-      <description>After the collapse of a nanotechnology 
-      society in England, the young survivors lay the 
-      foundation for a new society.</description>
-   </book>
-   <book id="bk104">
-      <author>Corets, Eva</author>
-      <title>Oberon's Legacy</title>
-      <genre>Fantasy</genre>
-      <price>5.95</price>
-      <publish_date>2001-03-10</publish_date>
-      <description>In post-apocalypse England, the mysterious 
-      agent known only as Oberon helps to create a new life 
-      for the inhabitants of London. Sequel to Maeve 
-      Ascendant.</description>
-   </book>
-   <book id="bk105">
-      <author>Corets, Eva</author>
-      <title>The Sundered Grail</title>
-      <genre>Fantasy</genre>
-      <price>5.95</price>
-      <publish_date>2001-09-10</publish_date>
-      <description>The two daughters of Maeve, half-sisters, 
-      battle one another for control of England. Sequel to 
-      Oberon's Legacy.</description>
-   </book>
-   <book id="bk106">
-      <author>Randall, Cynthia</author>
-      <title>Lover Birds</title>
-      <genre>Romance</genre>
-      <price>4.95</price>
-      <publish_date>2000-09-02</publish_date>
-      <description>When Carla meets Paul at an ornithology 
-      conference, tempers fly as feathers get ruffled.</description>
-   </book>
-   <book id="bk107">
-      <author>Thurman, Paula</author>
-      <title>Splish Splash</title>
-      <genre>Romance</genre>
-      <price>4.95</price>
-      <publish_date>2000-11-02</publish_date>
-      <description>A deep sea diver finds true love twenty 
-      thousand leagues beneath the sea.</description>
-   </book>
-   <book id="bk108">
-      <author>Knorr, Stefan</author>
-      <title>Creepy Crawlies</title>
-      <genre>Horror</genre>
-      <price>4.95</price>
-      <publish_date>2000-12-06</publish_date>
-      <description>An anthology of horror stories about roaches,
-      centipedes, scorpions  and other insects.</description>
-   </book>
-   <book id="bk109">
-      <author>Kress, Peter</author>
-      <title>Paradox Lost</title>
-      <genre>Science Fiction</genre>
-      <price>6.95</price>
-      <publish_date>2000-11-02</publish_date>
-      <description>After an inadvertant trip through a Heisenberg
-      Uncertainty Device, James Salway discovers the problems 
-      of being quantum.</description>
-   </book>
-   <book id="bk110">
-      <author>O'Brien, Tim</author>
-      <title>Microsoft .NET: The Programming Bible</title>
-      <genre>Computer</genre>
-      <price>36.95</price>
-      <publish_date>2000-12-09</publish_date>
-      <description>Microsoft's .NET initiative is explored in 
-      detail in this deep programmer's reference.</description>
-   </book>
-   <book id="bk111">
-      <author>O'Brien, Tim</author>
-      <title>MSXML3: A Comprehensive Guide</title>
-      <genre>Computer</genre>
-      <price>36.95</price>
-      <publish_date>2000-12-01</publish_date>
-      <description>The Microsoft MSXML3 parser is covered in 
-      detail, with attention to XML DOM interfaces, XSLT processing, 
-      SAX and more.</description>
-   </book>
-   <book id="bk112">
-      <author>Galos, Mike</author>
-      <title>Visual Studio 7: A Comprehensive Guide</title>
-      <genre>Computer</genre>
-      <price>49.95</price>
-      <publish_date>2001-04-16</publish_date>
-      <description>Microsoft Visual Studio 7 is explored in depth,
-      looking at how Visual Basic, Visual C++, C#, and ASP+ are 
-      integrated into a comprehensive development 
-      environment.</description>
-   </book>
-</catalog>
+<HEADER xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xsd:schema targetNamespace="urn:schemas-microsoft-com:sql:SqlRowSet1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sqltypes="http://schemas.microsoft.com/sqlserver/2004/sqltypes" elementFormDefault="qualified">
+    <xsd:import namespace="http://schemas.microsoft.com/sqlserver/2004/sqltypes" schemaLocation="http://schemas.microsoft.com/sqlserver/2004/sqltypes/sqltypes.xsd" />
+    <xsd:element name="Books">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="id" type="sqltypes:int" nillable="1" />
+          <xsd:element name="name" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:varchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="500" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="price" type="sqltypes:float" nillable="1" />
+          <xsd:element name="author" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:varchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="300" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="category" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:varchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="250" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="language" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:varchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="100" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="ISBN" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:varchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="40" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="publish_date" type="sqltypes:date" nillable="1" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>1</id>
+    <name>Linux: The Complete Reference</name>
+    <price>2.722000000000000e+001</price>
+    <author>Richard Petersen</author>
+    <category>Computer</category>
+    <language>en</language>
+    <ISBN>978-0071492478</ISBN>
+    <publish_date>2016-12-14</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>2</id>
+    <name>Design Patterns: Elements of Reusable Object-Oriented Software </name>
+    <price>1.511000000000000e+001</price>
+    <author>Ralph Johnson, John Vlissides, Grady Booch</author>
+    <category>Computer Science</category>
+    <language>en</language>
+    <ISBN>978-0201633610</ISBN>
+    <publish_date>2016-03-01</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>3</id>
+    <name>Machine Learning for Absolute Beginners\r\n</name>
+    <price>1.036000000000000e+001</price>
+    <author>Oliver Theobald</author>
+    <category>Computer Science</category>
+    <language>en</language>
+    <ISBN>123-58679-654</ISBN>
+    <publish_date>2016-08-01</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>4</id>
+    <name>Python Crash Course: A Hands-On, Project-Based Introduction to Programming</name>
+    <price>2.158000000000000e+001</price>
+    <author>Eric Matthes</author>
+    <category>Programming</category>
+    <language>en</language>
+    <ISBN>659-8546-324</ISBN>
+    <publish_date>2015-11-30</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>5</id>
+    <name>Data Structures and Algorithms in Java</name>
+    <price>1.026500000000000e+002</price>
+    <author>Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser</author>
+    <category>Computer Science</category>
+    <language>en</language>
+    <ISBN>978-1118777788</ISBN>
+    <publish_date>2014-06-23</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>6</id>
+    <name>Star Wars: Darth Vader Vol. 1: Vader</name>
+    <price>2.654000000000000e+001</price>
+    <author>Kieron Gillen</author>
+    <category>Comic Novels</category>
+    <language>en</language>
+    <ISBN>485-6582-658</ISBN>
+    <publish_date>2015-09-16</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>7</id>
+    <name>Star Wars Vol. 1: Skywalker Strikes</name>
+    <price>1.623000000000000e+001</price>
+    <author>Jason Aron</author>
+    <category>Novels</category>
+    <language>en</language>
+    <ISBN>159-7539-985</ISBN>
+    <publish_date>2011-04-11</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>8</id>
+    <name>Phonics for Kindergarten, Grade K </name>
+    <price>6.320000000000000e+000</price>
+    <author>Carson-Dellosa Publishing </author>
+    <category>Education</category>
+    <language>en</language>
+    <ISBN>412-6548-7854</ISBN>
+    <publish_date>2016-08-10</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>9</id>
+    <name>Astrophysics for People in a Hurry </name>
+    <price>9.949999999999999e+000</price>
+    <author>Astrophysics for People in a Hurry </author>
+    <category>Science</category>
+    <language>en</language>
+    <ISBN>654-71235-654</ISBN>
+    <publish_date>2010-10-02</publish_date>
+  </Books>
+  <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <id>10</id>
+    <name>Let's Review Algebra I</name>
+    <price>8.539999999999999e+000</price>
+    <author>Gary Rubinstein (Author) </author>
+    <category>Science</category>
+    <language>en</language>
+    <ISBN>978-1438009854</ISBN>
+    <publish_date>2006-03-24</publish_date>
+  </Books>
+</HEADER>

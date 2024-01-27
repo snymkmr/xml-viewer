@@ -1,98 +1,85 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XML Viewer App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 20px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML Viewer</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
 </head>
-
 <body>
-    <input type="file" id="fileInput" />
-    <table id="xmlTable"></table>
+  <input type="file" id="fileInput" />
+  <div id="xmlTableContainer"></div>
 
-    <script>
-        const { ipcRenderer } = require('electron');
+  <script>
+    const { ipcRenderer } = require('electron');
 
-        document.getElementById('fileInput').addEventListener('change', (event) => {
-            const filePath = event.target.files[0].path;
-            ipcRenderer.send('file-selected', filePath);
-        });
+    document.getElementById('fileInput').addEventListener('change', (event) => {
+      const filePath = event.target.files[0].path;
+      ipcRenderer.send('file-selected', filePath);
+    });
 
-        ipcRenderer.on('xml-data', (event, data) => {
-            console.log('Received XML Data:', data);
-            displayXmlAsTable(data);
-        });
+    ipcRenderer.on('xml-data', (event, data) => {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data, 'text/xml');
 
-        function displayXmlAsTable(xmlData) {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlData, 'application/xml');
+      const books = xmlDoc.getElementsByTagName('Books');
+      const xmlTableContainer = document.getElementById('xmlTableContainer');
+      xmlTableContainer.innerHTML = ''; // Clear previous content
 
-            const table = document.getElementById('xmlTable');
-            table.innerHTML = ''; // Clear existing content
+      // Create a table element
+      const table = document.createElement('table');
 
-            const rootElement = xmlDoc.documentElement;
+      // Create the header row
+      const headerRow = table.insertRow();
+      const headers = ['ID', 'Name', 'Price', 'Author', 'Category', 'Language', 'ISBN', 'Publish Date'];
 
-            if (!rootElement) {
-                console.error('Invalid XML format');
-                return;
-            }
+      headers.forEach((headerText) => {
+        const headerCell = document.createElement('th');
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+      });
 
-            const headerRow = table.insertRow(0);
+      // Iterate over books and create rows in the table
+      for (let i = 0; i < books.length; i++) {
+        const book = books[i];
 
-            // Dynamically generate header cells based on XML structure
-            const headerCells = Array.from(rootElement.children[0].children).map((element) => {
-                return element.tagName;
-            });
+        const newRow = table.insertRow();
 
-            headerCells.forEach((cellName, index) => {
-                const headerCell = headerRow.insertCell(index);
-                headerCell.textContent = cellName;
-            });
+        const idCell = newRow.insertCell(0);
+        const nameCell = newRow.insertCell(1);
+        const priceCell = newRow.insertCell(2);
+        const authorCell = newRow.insertCell(3);
+        const categoryCell = newRow.insertCell(4);
+        const languageCell = newRow.insertCell(5);
+        const isbnCell = newRow.insertCell(6);
+        const publishDateCell = newRow.insertCell(7);
 
-            const numRows = rootElement.children.length;
+        idCell.textContent = book.querySelector('id').textContent;
+        nameCell.textContent = book.querySelector('name').textContent;
+        priceCell.textContent = book.querySelector('price').textContent;
+        authorCell.textContent = book.querySelector('author').textContent;
+        categoryCell.textContent = book.querySelector('category').textContent;
+        languageCell.textContent = book.querySelector('language').textContent;
+        isbnCell.textContent = book.querySelector('ISBN').textContent;
+        publishDateCell.textContent = book.querySelector('publish_date').textContent;
+      }
 
-            for (let i = 0; i < numRows; i++) {
-                const dataRow = table.insertRow(i + 1);
-
-                headerCells.forEach((cellName, index) => {
-                    const dataCell = dataRow.insertCell(index);
-                    const cellValue = rootElement.children[i].querySelector(cellName)?.textContent || '';
-                    dataCell.textContent = cellValue;
-                });
-            }
-        }
-
-    </script>
+      xmlTableContainer.appendChild(table);
+    });
+  </script>
 </body>
-
 </html>
