@@ -1,3 +1,4 @@
+// main.js
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
@@ -7,15 +8,17 @@ let mainWindow;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 800,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            enableOverlayScrollbars: true // Enable overlay scrollbars
         }
     });
-    
+
+    mainWindow.maximize();
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
