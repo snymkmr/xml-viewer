@@ -100,15 +100,18 @@
 
     .notification {
       position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(169, 169, 169, 0.8); 
+      top: 10px;
+      right: -300px;
+      background-color: rgba(79, 79, 79, 0.8); 
       color: #fff;
       padding: 15px;
       border-radius: 5px;
-      display: none;
-      z-index: 980; 
+      z-index: 999;
+      transition: right 0.5s ease-in-out;
+    }
+
+    .notification.show {
+      right: 10px;
     }
 
     /* Style for the buttons */
@@ -241,10 +244,10 @@
     function showNotification(message, notificationId) {
       const notification = document.getElementById(notificationId);
       notification.textContent = message;
-      notification.style.display = 'block';
+      notification.classList.add('show');
 
       setTimeout(() => {
-        notification.style.display = 'none';
+        notification.classList.remove('show');
       }, 5000); // Hide after 5 seconds
     }
 
