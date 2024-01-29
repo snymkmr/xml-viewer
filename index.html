@@ -98,6 +98,19 @@
       cursor: pointer;
     }
 
+    .notification {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(169, 169, 169, 0.8); 
+      color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      display: none;
+      z-index: 980; 
+    }
+
     /* Style for the buttons */
     button {
       padding: 10px;
@@ -143,12 +156,17 @@
 
   <div id="xmlTableContainer"></div>
 
+  <div class="notification" id="fileBrowseNotification">File browsed successfully!</div>
+  <div class="notification" id="exportToExcelNotification">Data exported to Excel!</div>
+  <div class="notification" id="copyTableNotification">Table data copied to clipboard!</div>
+
   <script>
     const { ipcRenderer, clipboard } = require('electron');
 
     document.getElementById('fileInput').addEventListener('change', (event) => {
       const filePath = event.target.files[0].path;
       ipcRenderer.send('file-selected', filePath);
+      showNotification('File browsed successfully!', 'fileBrowseNotification');
     });
 
     ipcRenderer.on('xml-data', (event, data) => {
@@ -219,6 +237,17 @@
       const fileName = event.target.files[0].name;
       document.querySelector('.file-input-label').textContent = fileName;
     });
+
+    function showNotification(message, notificationId) {
+      const notification = document.getElementById(notificationId);
+      notification.textContent = message;
+      notification.style.display = 'block';
+
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 5000); // Hide after 5 seconds
+    }
+
   </script>
 
   <footer>
