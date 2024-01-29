@@ -68,6 +68,20 @@
       padding: 10px;
       font-size: 16px;
     }
+
+    /* Style for the buttons */
+    button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    /* Align buttons horizontally */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -77,12 +91,13 @@
     <p>A simple and elegant tool for viewing XML data in a tabular format.</p>
   </header>
 
-  <input type="file" id="fileInput" />
-  <div id="xmlTableContainer"></div>
+  <div class="button-container">
+    <input type="file" id="fileInput" />
+    <button id="copyTableBtn">Copy Table data</button>
+    <button id="openExcelBtn">Export to Excel</button>
+  </div>
 
-  <!-- Add buttons for Excel and Copy actions -->
-  <button id="openExcelBtn">Open in Excel</button>
-  <button id="copyTableBtn">Copy Table</button>
+  <div id="xmlTableContainer"></div>
 
   <script>
     const { ipcRenderer, clipboard } = require('electron');
@@ -158,5 +173,7 @@
 <footer>
   Made with <span style="color: red;">❤️</span> by Sanyam and powered by Node.js
 </footer>
+
+</body>
 
 </html>
