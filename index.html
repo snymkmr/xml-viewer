@@ -62,6 +62,13 @@
       padding: 10px;
     }
 
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
     .file-input-container {
       display: flex;
       align-items: center;
@@ -113,14 +120,6 @@
       border: 1px solid #008000;
       color: #fff;
     }
-
-    /* Align buttons horizontally */
-    .button-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
   </style>
 </head>
 
@@ -136,8 +135,10 @@
       <input type="file" id="fileInput" style="display: none;" />
       <button id="fileInputBtn" class="file-input-btn">Browse</button>
     </div>
-    <button id="copyTableBtn">Copy Table data</button>
-    <button id="openExcelBtn">Export to Excel</button>
+    <div class="button-group">
+      <button id="copyTableBtn">Copy Table data</button>
+      <button id="openExcelBtn">Export to Excel</button>
+    </div>
   </div>
 
   <div id="xmlTableContainer"></div>
