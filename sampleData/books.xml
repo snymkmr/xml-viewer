@@ -49,7 +49,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>1</id>
     <name>Linux: The Complete Reference</name>
-    <price>2.722000000000000e+001</price>
+    <price>2.7221</price>
     <author>Richard Petersen</author>
     <category>Computer</category>
     <language>en</language>
@@ -59,7 +59,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>2</id>
     <name>Design Patterns: Elements of Reusable Object-Oriented Software </name>
-    <price>1.511000000000000e+001</price>
+    <price>1.5111</price>
     <author>Ralph Johnson, John Vlissides, Grady Booch</author>
     <category>Computer Science</category>
     <language>en</language>
@@ -69,7 +69,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>3</id>
     <name>Machine Learning for Absolute Beginners\r\n</name>
-    <price>1.036000000000000e+001</price>
+    <price>1.0361</price>
     <author>Oliver Theobald</author>
     <category>Computer Science</category>
     <language>en</language>
@@ -79,7 +79,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>4</id>
     <name>Python Crash Course: A Hands-On, Project-Based Introduction to Programming</name>
-    <price>2.158000000000000e+001</price>
+    <price>2.1581</price>
     <author>Eric Matthes</author>
     <category>Programming</category>
     <language>en</language>
@@ -89,7 +89,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>5</id>
     <name>Data Structures and Algorithms in Java</name>
-    <price>1.026500000000000e+002</price>
+    <price>1.02652</price>
     <author>Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser</author>
     <category>Computer Science</category>
     <language>en</language>
@@ -99,7 +99,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>6</id>
     <name>Star Wars: Darth Vader Vol. 1: Vader</name>
-    <price>2.654000000000000e+001</price>
+    <price>2.6541</price>
     <author>Kieron Gillen</author>
     <category>Comic Novels</category>
     <language>en</language>
@@ -109,7 +109,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>7</id>
     <name>Star Wars Vol. 1: Skywalker Strikes</name>
-    <price>1.623000000000000e+001</price>
+    <price>1.6231</price>
     <author>Jason Aron</author>
     <category>Novels</category>
     <language>en</language>
@@ -119,7 +119,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>8</id>
     <name>Phonics for Kindergarten, Grade K </name>
-    <price>6.320000000000000e+000</price>
+    <price>6.3200</price>
     <author>Carson-Dellosa Publishing </author>
     <category>Education</category>
     <language>en</language>
@@ -129,7 +129,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>9</id>
     <name>Astrophysics for People in a Hurry </name>
-    <price>9.949999999999999e+000</price>
+    <price>9.940</price>
     <author>Astrophysics for People in a Hurry </author>
     <category>Science</category>
     <language>en</language>
@@ -139,7 +139,7 @@
   <Books xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
     <id>10</id>
     <name>Let's Review Algebra I</name>
-    <price>8.539999999999999e+000</price>
+    <price>8.530</price>
     <author>Gary Rubinstein (Author) </author>
     <category>Science</category>
     <language>en</language>
