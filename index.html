@@ -62,11 +62,33 @@
       padding: 10px;
     }
 
-    input {
-      width: calc(60% - 20px);
+    .file-input-container {
+      display: flex;
+      align-items: center;
       margin: 10px;
-      padding: 10px;
+    }
+
+    .file-input-label {
+      flex: 1;
       font-size: 16px;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .file-input-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      margin-left: 10px;
+      cursor: pointer;
     }
 
     /* Style for the buttons */
@@ -75,14 +97,12 @@
       margin: 10px;
       font-size: 16px;
       border-radius: 10px;
-      /* Rounded corners */
       cursor: pointer;
     }
 
     /* Copy button style */
     #copyTableBtn {
       background-color: #ffc107;
-      /* Yellow color */
       border: 1px solid #ffc107;
       color: #333;
     }
@@ -90,7 +110,6 @@
     /* Excel button style */
     #openExcelBtn {
       background-color: #008000;
-      /* Green color */
       border: 1px solid #008000;
       color: #fff;
     }
@@ -112,7 +131,11 @@
   </header>
 
   <div class="button-container">
-    <input type="file" id="fileInput" />
+    <div class="file-input-container">
+      <label for="fileInput" class="file-input-label">Choose a file...</label>
+      <input type="file" id="fileInput" style="display: none;" />
+      <button id="fileInputBtn" class="file-input-btn">Browse</button>
+    </div>
     <button id="copyTableBtn">Copy Table data</button>
     <button id="openExcelBtn">Export to Excel</button>
   </div>
@@ -186,6 +209,15 @@
       clipboard.writeText(tableText);
       console.log('Table content copied to clipboard:', tableText);
     }
+
+    document.getElementById('fileInputBtn').addEventListener('click', () => {
+      document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', (event) => {
+      const fileName = event.target.files[0].name;
+      document.querySelector('.file-input-label').textContent = fileName;
+    });
   </script>
 
   <footer>
