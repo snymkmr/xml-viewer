@@ -80,12 +80,12 @@
   <input type="file" id="fileInput" />
   <div id="xmlTableContainer"></div>
 
-  <footer>
-    Made with <span style="color: red;">❤️</span> by Sanyam and powered by Node.js
-  </footer>
+  <!-- Add buttons for Excel and Copy actions -->
+  <button id="openExcelBtn">Open in Excel</button>
+  <button id="copyTableBtn">Copy Table</button>
 
   <script>
-    const { ipcRenderer } = require('electron');
+    const { ipcRenderer, clipboard } = require('electron');
 
     document.getElementById('fileInput').addEventListener('change', (event) => {
       const filePath = event.target.files[0].path;
@@ -127,8 +127,36 @@
       }
 
       xmlTableContainer.appendChild(table);
+
+      // Add event listeners for Excel and Copy buttons
+      document.getElementById('openExcelBtn').addEventListener('click', () => {
+        openTableInExcel(table);
+      });
+
+      document.getElementById('copyTableBtn').addEventListener('click', () => {
+        copyTableToClipboard(table);
+      });
     });
+
+    // Function to open the table in Excel (replace with your preferred method)
+    function openTableInExcel(table) {
+      // Your logic to open the table in Excel
+      console.log('Opening table in Excel...');
+    }
+
+    // Function to copy the table content to clipboard
+    function copyTableToClipboard(table) {
+      const tableData = Array.from(table.rows).map((row) => Array.from(row.cells).map((cell) => cell.textContent));
+      const tableText = tableData.map((row) => row.join('\t')).join('\n');
+      clipboard.writeText(tableText);
+      console.log('Table content copied to clipboard:', tableText);
+    }
   </script>
+
 </body>
+
+<footer>
+  Made with <span style="color: red;">❤️</span> by Sanyam and powered by Node.js
+</footer>
 
 </html>
