@@ -160,7 +160,7 @@
   <div id="xmlTableContainer"></div>
 
   <div class="notification" id="fileBrowseNotification">File browsed successfully!</div>
-  <div class="notification" id="exportToExcelNotification">Data exported to Excel!</div>
+  <div class="notification" id="exportToExcelNotification">Opening table in Excel...</div>
   <div class="notification" id="copyTableNotification">Table data copied to clipboard!</div>
 
   <script>
@@ -211,10 +211,12 @@
       // Add event listeners for Excel and Copy buttons
       document.getElementById('openExcelBtn').addEventListener('click', () => {
         openTableInExcel(table);
+        showNotification('Opening table in Excel...', 'exportToExcelNotification');
       });
 
       document.getElementById('copyTableBtn').addEventListener('click', () => {
         copyTableToClipboard(table);
+        showNotification('Table data copied to clipboard!', 'copyTableNotification');
       });
     });
 
