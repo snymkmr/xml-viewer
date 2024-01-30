@@ -131,7 +131,7 @@
     }
 
     /* Excel button style */
-    #openExcelBtn {
+    #exportButton {
       background-color: #008000;
       border: 1px solid #008000;
       color: #fff;
@@ -153,7 +153,7 @@
     </div>
     <div class="button-group">
       <button id="copyTableBtn">Copy Table data</button>
-      <button id="openExcelBtn">Export to Excel</button>
+      <button id="exportButton" onclick="exportToExcel()">Export to Excel</button>
     </div>
   </div>
 
@@ -168,6 +168,7 @@
     const possibleTags = ['Books', 'Customer']; // Add other possible tags as needed
     let foundTag = null;
     let elements = null;
+    let isExporting = false;
 
     document.getElementById('fileInput').addEventListener('change', (event) => {
       const filePath = event.target.files[0].path;
@@ -230,11 +231,6 @@
       xmlTableContainer.appendChild(table);
 
       // Add event listeners for Excel and Copy buttons
-      document.getElementById('openExcelBtn').addEventListener('click', () => {
-        exportToExcel(table);
-        showNotification('Opening table in Excel...', 'exportToExcelNotification');
-      });
-
       document.getElementById('copyTableBtn').addEventListener('click', () => {
         copyToClipboard(table);
         showNotification('Table data copied to clipboard!', 'copyTableNotification');
@@ -248,12 +244,26 @@
       console.log('Table content copied to clipboard:', tableText);
     }
 
+    function toggleExportButton(disabled) {
+      const exportButton = document.getElementById('exportButton');
+      exportButton.disabled = disabled;
+    }
+
     function exportToExcel() {
+      if (isExporting) {
+        return; // If already exporting, do nothing
+      }
+      isExporting = true;
+      toggleExportButton(true); // Disable the export button
+
       const tableData = Array.from(document.querySelectorAll('table tr')).map(row =>
         Array.from(row.querySelectorAll('td, th')).map(cell => cell.textContent)
       );
 
       ipcRenderer.send('export-to-excel', tableData);
+      showNotification('Opening table in Excel...', 'exportToExcelNotification');
+      isExporting = false;
+      toggleExportButton(false);
     }
 
     ipcRenderer.on('open-excel', (event, filePath) => {
