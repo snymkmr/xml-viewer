@@ -1,7 +1,10 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+// main.js
+
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
+const ExcelJS = require('exceljs');
 
 let mainWindow;
 
@@ -15,7 +18,6 @@ function createWindow() {
             enableRemoteModule: true
         }
     });
-    
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
@@ -40,4 +42,40 @@ ipcMain.on('file-selected', (event, filePath) => {
             event.sender.send('xml-data', data);
         }
     });
+});
+
+ipcMain.on('copy-to-clipboard', (event, tableData) => {
+    const clipboardData = tableData.map(row => row.join('\t')).join('\n');
+    event.sender.send('copy-success', clipboardData);
+});
+
+ipcMain.on('open-excel', (event, filePath) => {
+    shell.openPath(filePath);
+});
+
+ipcMain.on('export-to-excel', (event, tableData) => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Sheet 1');
+
+    // Add the table data to the worksheet
+    tableData.forEach(row => {
+        worksheet.addRow(row);
+    });
+
+    const excelFilePath = dialog.showSaveDialogSync(mainWindow, {
+        title: 'Save Excel File',
+        defaultPath: 'table_data.xlsx',
+        filters: [{ name: 'Excel Files', extensions: ['xlsx'] }]
+    });
+
+    if (excelFilePath) {
+        workbook.xlsx.writeFile(excelFilePath)
+            .then(() => {
+                event.sender.send('excel-success', excelFilePath);
+                event.sender.send('open-excel', excelFilePath); // Open the file in Excel
+            })
+            .catch(err => {
+                console.error(`Error writing Excel file: ${err.message}`);
+            });
+    }
 });

@@ -1,0 +1,783 @@
+﻿<RAW_HEADER xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xsd:schema targetNamespace="urn:schemas-microsoft-com:sql:SqlRowSet1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sqltypes="http://schemas.microsoft.com/sqlserver/2004/sqltypes" elementFormDefault="qualified">
+    <xsd:import namespace="http://schemas.microsoft.com/sqlserver/2004/sqltypes" schemaLocation="http://schemas.microsoft.com/sqlserver/2004/sqltypes/sqltypes.xsd" />
+    <xsd:element name="Customer">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="Id" type="sqltypes:int" nillable="1" />
+          <xsd:element name="FirstName" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="40" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="LastName" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="40" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="City" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="40" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="Country" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="40" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="Phone" nillable="1">
+            <xsd:simpleType>
+              <xsd:restriction base="sqltypes:nvarchar" sqltypes:localeId="1033" sqltypes:sqlCompareOptions="IgnoreCase IgnoreKanaType IgnoreWidth" sqltypes:sqlSortId="52">
+                <xsd:maxLength value="20" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>1</Id>
+    <FirstName>Maria</FirstName>
+    <LastName>Anders</LastName>
+    <City>Berlin</City>
+    <Country>Germany</Country>
+    <Phone>030-0074321</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>2</Id>
+    <FirstName>Ana</FirstName>
+    <LastName>Trujillo</LastName>
+    <City>México D.F.</City>
+    <Country>Mexico</Country>
+    <Phone>(5) 555-4729</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>3</Id>
+    <FirstName>Antonio</FirstName>
+    <LastName>Moreno</LastName>
+    <City>México D.F.</City>
+    <Country>Mexico</Country>
+    <Phone>(5) 555-3932</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>4</Id>
+    <FirstName>Thomas</FirstName>
+    <LastName>Hardy</LastName>
+    <City>London</City>
+    <Country>UK</Country>
+    <Phone>(171) 555-7788</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>5</Id>
+    <FirstName>Christina</FirstName>
+    <LastName>Berglund</LastName>
+    <City>Luleå</City>
+    <Country>Sweden</Country>
+    <Phone>0921-12 34 65</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>6</Id>
+    <FirstName>Hanna</FirstName>
+    <LastName>Moos</LastName>
+    <City>Mannheim</City>
+    <Country>Germany</Country>
+    <Phone>0621-08460</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>7</Id>
+    <FirstName>Frédérique</FirstName>
+    <LastName>Citeaux</LastName>
+    <City>Strasbourg</City>
+    <Country>France</Country>
+    <Phone>88.60.15.31</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>8</Id>
+    <FirstName>Martín</FirstName>
+    <LastName>Sommer</LastName>
+    <City>Madrid</City>
+    <Country>Spain</Country>
+    <Phone>(91) 555 22 82</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>9</Id>
+    <FirstName>Laurence</FirstName>
+    <LastName>Lebihan</LastName>
+    <City>Marseille</City>
+    <Country>France</Country>
+    <Phone>91.24.45.40</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>10</Id>
+    <FirstName>Elizabeth</FirstName>
+    <LastName>Lincoln</LastName>
+    <City>Tsawassen</City>
+    <Country>Canada</Country>
+    <Phone>(604) 555-4729</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>11</Id>
+    <FirstName>Victoria</FirstName>
+    <LastName>Ashworth</LastName>
+    <City>London</City>
+    <Country>UK</Country>
+    <Phone>(171) 555-1212</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>12</Id>
+    <FirstName>Patricio</FirstName>
+    <LastName>Simpson</LastName>
+    <City>Buenos Aires</City>
+    <Country>Argentina</Country>
+    <Phone>(1) 135-5555</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>13</Id>
+    <FirstName>Francisco</FirstName>
+    <LastName>Chang</LastName>
+    <City>México D.F.</City>
+    <Country>Mexico</Country>
+    <Phone>(5) 555-3392</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>14</Id>
+    <FirstName>Yang</FirstName>
+    <LastName>Wang</LastName>
+    <City>Bern</City>
+    <Country>Switzerland</Country>
+    <Phone>0452-076545</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>15</Id>
+    <FirstName>Pedro</FirstName>
+    <LastName>Afonso</LastName>
+    <City>Sao Paulo</City>
+    <Country>Brazil</Country>
+    <Phone>(11) 555-7647</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>16</Id>
+    <FirstName>Elizabeth</FirstName>
+    <LastName>Brown</LastName>
+    <City>London</City>
+    <Country>UK</Country>
+    <Phone>(171) 555-2282</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>17</Id>
+    <FirstName>Sven</FirstName>
+    <LastName>Ottlieb</LastName>
+    <City>Aachen</City>
+    <Country>Germany</Country>
+    <Phone>0241-039123</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>18</Id>
+    <FirstName>Janine</FirstName>
+    <LastName>Labrune</LastName>
+    <City>Nantes</City>
+    <Country>France</Country>
+    <Phone>40.67.88.88</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>19</Id>
+    <FirstName>Ann</FirstName>
+    <LastName>Devon</LastName>
+    <City>London</City>
+    <Country>UK</Country>
+    <Phone>(171) 555-0297</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>20</Id>
+    <FirstName>Roland</FirstName>
+    <LastName>Mendel</LastName>
+    <City>Graz</City>
+    <Country>Austria</Country>
+    <Phone>7675-3425</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>21</Id>
+    <FirstName>Aria</FirstName>
+    <LastName>Cruz</LastName>
+    <City>Sao Paulo</City>
+    <Country>Brazil</Country>
+    <Phone>(11) 555-9857</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>22</Id>
+    <FirstName>Diego</FirstName>
+    <LastName>Roel</LastName>
+    <City>Madrid</City>
+    <Country>Spain</Country>
+    <Phone>(91) 555 94 44</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>23</Id>
+    <FirstName>Martine</FirstName>
+    <LastName>Rancé</LastName>
+    <City>Lille</City>
+    <Country>France</Country>
+    <Phone>20.16.10.16</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>24</Id>
+    <FirstName>Maria</FirstName>
+    <LastName>Larsson</LastName>
+    <City>Bräcke</City>
+    <Country>Sweden</Country>
+    <Phone>0695-34 67 21</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>25</Id>
+    <FirstName>Peter</FirstName>
+    <LastName>Franken</LastName>
+    <City>München</City>
+    <Country>Germany</Country>
+    <Phone>089-0877310</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>26</Id>
+    <FirstName>Carine</FirstName>
+    <LastName>Schmitt</LastName>
+    <City>Nantes</City>
+    <Country>France</Country>
+    <Phone>40.32.21.21</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>27</Id>
+    <FirstName>Paolo</FirstName>
+    <LastName>Accorti</LastName>
+    <City>Torino</City>
+    <Country>Italy</Country>
+    <Phone>011-4988260</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>28</Id>
+    <FirstName>Lino</FirstName>
+    <LastName>Rodriguez</LastName>
+    <City>Lisboa</City>
+    <Country>Portugal</Country>
+    <Phone>(1) 354-2534</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>29</Id>
+    <FirstName>Eduardo</FirstName>
+    <LastName>Saavedra</LastName>
+    <City>Barcelona</City>
+    <Country>Spain</Country>
+    <Phone>(93) 203 4560</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>30</Id>
+    <FirstName>José</FirstName>
+    <LastName>Pedro Freyre</LastName>
+    <City>Sevilla</City>
+    <Country>Spain</Country>
+    <Phone>(95) 555 82 82</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>31</Id>
+    <FirstName>André</FirstName>
+    <LastName>Fonseca</LastName>
+    <City>Campinas</City>
+    <Country>Brazil</Country>
+    <Phone>(11) 555-9482</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>32</Id>
+    <FirstName>Howard</FirstName>
+    <LastName>Snyder</LastName>
+    <City>Eugene</City>
+    <Country>USA</Country>
+    <Phone>(503) 555-7555</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>33</Id>
+    <FirstName>Manuel</FirstName>
+    <LastName>Pereira</LastName>
+    <City>Caracas</City>
+    <Country>Venezuela</Country>
+    <Phone>(2) 283-2951</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>34</Id>
+    <FirstName>Mario</FirstName>
+    <LastName>Pontes</LastName>
+    <City>Rio de Janeiro</City>
+    <Country>Brazil</Country>
+    <Phone>(21) 555-0091</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>35</Id>
+    <FirstName>Carlos</FirstName>
+    <LastName>Hernández</LastName>
+    <City>San Cristóbal</City>
+    <Country>Venezuela</Country>
+    <Phone>(5) 555-1340</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>36</Id>
+    <FirstName>Yoshi</FirstName>
+    <LastName>Latimer</LastName>
+    <City>Elgin</City>
+    <Country>USA</Country>
+    <Phone>(503) 555-6874</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>37</Id>
+    <FirstName>Patricia</FirstName>
+    <LastName>McKenna</LastName>
+    <City>Cork</City>
+    <Country>Ireland</Country>
+    <Phone>2967 542</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>38</Id>
+    <FirstName>Helen</FirstName>
+    <LastName>Bennett</LastName>
+    <City>Cowes</City>
+    <Country>UK</Country>
+    <Phone>(198) 555-8888</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>39</Id>
+    <FirstName>Philip</FirstName>
+    <LastName>Cramer</LastName>
+    <City>Brandenburg</City>
+    <Country>Germany</Country>
+    <Phone>0555-09876</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>40</Id>
+    <FirstName>Daniel</FirstName>
+    <LastName>Tonini</LastName>
+    <City>Versailles</City>
+    <Country>France</Country>
+    <Phone>30.59.84.10</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>41</Id>
+    <FirstName>Annette</FirstName>
+    <LastName>Roulet</LastName>
+    <City>Toulouse</City>
+    <Country>France</Country>
+    <Phone>61.77.61.10</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>42</Id>
+    <FirstName>Yoshi</FirstName>
+    <LastName>Tannamuri</LastName>
+    <City>Vancouver</City>
+    <Country>Canada</Country>
+    <Phone>(604) 555-3392</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>43</Id>
+    <FirstName>John</FirstName>
+    <LastName>Steel</LastName>
+    <City>Walla Walla</City>
+    <Country>USA</Country>
+    <Phone>(509) 555-7969</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>44</Id>
+    <FirstName>Renate</FirstName>
+    <LastName>Messner</LastName>
+    <City>Frankfurt a.M.</City>
+    <Country>Germany</Country>
+    <Phone>069-0245984</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>45</Id>
+    <FirstName>Jaime</FirstName>
+    <LastName>Yorres</LastName>
+    <City>San Francisco</City>
+    <Country>USA</Country>
+    <Phone>(415) 555-5938</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>46</Id>
+    <FirstName>Carlos</FirstName>
+    <LastName>González</LastName>
+    <City>Barquisimeto</City>
+    <Country>Venezuela</Country>
+    <Phone>(9) 331-6954</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>47</Id>
+    <FirstName>Felipe</FirstName>
+    <LastName>Izquierdo</LastName>
+    <City>I. de Margarita</City>
+    <Country>Venezuela</Country>
+    <Phone>(8) 34-56-12</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>48</Id>
+    <FirstName>Fran</FirstName>
+    <LastName>Wilson</LastName>
+    <City>Portland</City>
+    <Country>USA</Country>
+    <Phone>(503) 555-9573</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>49</Id>
+    <FirstName>Giovanni</FirstName>
+    <LastName>Rovelli</LastName>
+    <City>Bergamo</City>
+    <Country>Italy</Country>
+    <Phone>035-640230</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>50</Id>
+    <FirstName>Catherine</FirstName>
+    <LastName>Dewey</LastName>
+    <City>Bruxelles</City>
+    <Country>Belgium</Country>
+    <Phone>(02) 201 24 67</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>51</Id>
+    <FirstName>Jean</FirstName>
+    <LastName>Fresnière</LastName>
+    <City>Montréal</City>
+    <Country>Canada</Country>
+    <Phone>(514) 555-8054</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>52</Id>
+    <FirstName>Alexander</FirstName>
+    <LastName>Feuer</LastName>
+    <City>Leipzig</City>
+    <Country>Germany</Country>
+    <Phone>0342-023176</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>53</Id>
+    <FirstName>Simon</FirstName>
+    <LastName>Crowther</LastName>
+    <City>London</City>
+    <Country>UK</Country>
+    <Phone>(171) 555-7733</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>54</Id>
+    <FirstName>Yvonne</FirstName>
+    <LastName>Moncada</LastName>
+    <City>Buenos Aires</City>
+    <Country>Argentina</Country>
+    <Phone>(1) 135-5333</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>55</Id>
+    <FirstName>Rene</FirstName>
+    <LastName>Phillips</LastName>
+    <City>Anchorage</City>
+    <Country>USA</Country>
+    <Phone>(907) 555-7584</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>56</Id>
+    <FirstName>Henriette</FirstName>
+    <LastName>Pfalzheim</LastName>
+    <City>Köln</City>
+    <Country>Germany</Country>
+    <Phone>0221-0644327</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>57</Id>
+    <FirstName>Marie</FirstName>
+    <LastName>Bertrand</LastName>
+    <City>Paris</City>
+    <Country>France</Country>
+    <Phone>(1) 42.34.22.66</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>58</Id>
+    <FirstName>Guillermo</FirstName>
+    <LastName>Fernández</LastName>
+    <City>México D.F.</City>
+    <Country>Mexico</Country>
+    <Phone>(5) 552-3745</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>59</Id>
+    <FirstName>Georg</FirstName>
+    <LastName>Pipps</LastName>
+    <City>Salzburg</City>
+    <Country>Austria</Country>
+    <Phone>6562-9722</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>60</Id>
+    <FirstName>Isabel</FirstName>
+    <LastName>de Castro</LastName>
+    <City>Lisboa</City>
+    <Country>Portugal</Country>
+    <Phone>(1) 356-5634</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>61</Id>
+    <FirstName>Bernardo</FirstName>
+    <LastName>Batista</LastName>
+    <City>Rio de Janeiro</City>
+    <Country>Brazil</Country>
+    <Phone>(21) 555-4252</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>62</Id>
+    <FirstName>Lúcia</FirstName>
+    <LastName>Carvalho</LastName>
+    <City>Sao Paulo</City>
+    <Country>Brazil</Country>
+    <Phone>(11) 555-1189</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>63</Id>
+    <FirstName>Horst</FirstName>
+    <LastName>Kloss</LastName>
+    <City>Cunewalde</City>
+    <Country>Germany</Country>
+    <Phone>0372-035188</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>64</Id>
+    <FirstName>Sergio</FirstName>
+    <LastName>Gutiérrez</LastName>
+    <City>Buenos Aires</City>
+    <Country>Argentina</Country>
+    <Phone>(1) 123-5555</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>65</Id>
+    <FirstName>Paula</FirstName>
+    <LastName>Wilson</LastName>
+    <City>Albuquerque</City>
+    <Country>USA</Country>
+    <Phone>(505) 555-5939</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>66</Id>
+    <FirstName>Maurizio</FirstName>
+    <LastName>Moroni</LastName>
+    <City>Reggio Emilia</City>
+    <Country>Italy</Country>
+    <Phone>0522-556721</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>67</Id>
+    <FirstName>Janete</FirstName>
+    <LastName>Limeira</LastName>
+    <City>Rio de Janeiro</City>
+    <Country>Brazil</Country>
+    <Phone>(21) 555-3412</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>68</Id>
+    <FirstName>Michael</FirstName>
+    <LastName>Holz</LastName>
+    <City>Genève</City>
+    <Country>Switzerland</Country>
+    <Phone>0897-034214</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>69</Id>
+    <FirstName>Alejandra</FirstName>
+    <LastName>Camino</LastName>
+    <City>Madrid</City>
+    <Country>Spain</Country>
+    <Phone>(91) 745 6200</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>70</Id>
+    <FirstName>Jonas</FirstName>
+    <LastName>Bergulfsen</LastName>
+    <City>Stavern</City>
+    <Country>Norway</Country>
+    <Phone>07-98 92 35</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>71</Id>
+    <FirstName>Jose</FirstName>
+    <LastName>Pavarotti</LastName>
+    <City>Boise</City>
+    <Country>USA</Country>
+    <Phone>(208) 555-8097</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>72</Id>
+    <FirstName>Hari</FirstName>
+    <LastName>Kumar</LastName>
+    <City>London</City>
+    <Country>UK</Country>
+    <Phone>(171) 555-1717</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>73</Id>
+    <FirstName>Jytte</FirstName>
+    <LastName>Petersen</LastName>
+    <City>Kobenhavn</City>
+    <Country>Denmark</Country>
+    <Phone>31 12 34 56</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>74</Id>
+    <FirstName>Dominique</FirstName>
+    <LastName>Perrier</LastName>
+    <City>Paris</City>
+    <Country>France</Country>
+    <Phone>(1) 47.55.60.10</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>75</Id>
+    <FirstName>Art</FirstName>
+    <LastName>Braunschweiger</LastName>
+    <City>Lander</City>
+    <Country>USA</Country>
+    <Phone>(307) 555-4680</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>76</Id>
+    <FirstName>Pascale</FirstName>
+    <LastName>Cartrain</LastName>
+    <City>Charleroi</City>
+    <Country>Belgium</Country>
+    <Phone>(071) 23 67 22 20</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>77</Id>
+    <FirstName>Liz</FirstName>
+    <LastName>Nixon</LastName>
+    <City>Portland</City>
+    <Country>USA</Country>
+    <Phone>(503) 555-3612</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>78</Id>
+    <FirstName>Liu</FirstName>
+    <LastName>Wong</LastName>
+    <City>Butte</City>
+    <Country>USA</Country>
+    <Phone>(406) 555-5834</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>79</Id>
+    <FirstName>Karin</FirstName>
+    <LastName>Josephs</LastName>
+    <City>Münster</City>
+    <Country>Germany</Country>
+    <Phone>0251-031259</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>80</Id>
+    <FirstName>Miguel</FirstName>
+    <LastName>Angel Paolino</LastName>
+    <City>México D.F.</City>
+    <Country>Mexico</Country>
+    <Phone>(5) 555-2933</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>81</Id>
+    <FirstName>Anabela</FirstName>
+    <LastName>Domingues</LastName>
+    <City>Sao Paulo</City>
+    <Country>Brazil</Country>
+    <Phone>(11) 555-2167</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>82</Id>
+    <FirstName>Helvetius</FirstName>
+    <LastName>Nagy</LastName>
+    <City>Kirkland</City>
+    <Country>USA</Country>
+    <Phone>(206) 555-8257</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>83</Id>
+    <FirstName>Palle</FirstName>
+    <LastName>Ibsen</LastName>
+    <City>Århus</City>
+    <Country>Denmark</Country>
+    <Phone>86 21 32 43</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>84</Id>
+    <FirstName>Mary</FirstName>
+    <LastName>Saveley</LastName>
+    <City>Lyon</City>
+    <Country>France</Country>
+    <Phone>78.32.54.86</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>85</Id>
+    <FirstName>Paul</FirstName>
+    <LastName>Henriot</LastName>
+    <City>Reims</City>
+    <Country>France</Country>
+    <Phone>26.47.15.10</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>86</Id>
+    <FirstName>Rita</FirstName>
+    <LastName>Müller</LastName>
+    <City>Stuttgart</City>
+    <Country>Germany</Country>
+    <Phone>0711-020361</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>87</Id>
+    <FirstName>Pirkko</FirstName>
+    <LastName>Koskitalo</LastName>
+    <City>Oulu</City>
+    <Country>Finland</Country>
+    <Phone>981-443655</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>88</Id>
+    <FirstName>Paula</FirstName>
+    <LastName>Parente</LastName>
+    <City>Resende</City>
+    <Country>Brazil</Country>
+    <Phone>(14) 555-8122</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>89</Id>
+    <FirstName>Karl</FirstName>
+    <LastName>Jablonski</LastName>
+    <City>Seattle</City>
+    <Country>USA</Country>
+    <Phone>(206) 555-4112</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>90</Id>
+    <FirstName>Matti</FirstName>
+    <LastName>Karttunen</LastName>
+    <City>Helsinki</City>
+    <Country>Finland</Country>
+    <Phone>90-224 8858</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>91</Id>
+    <FirstName>Zbyszek</FirstName>
+    <LastName>Piestrzeniewicz</LastName>
+    <City>Warszawa</City>
+    <Country>Poland</Country>
+    <Phone>(26) 642-7012</Phone>
+  </Customer>
+  <Customer xmlns="urn:schemas-microsoft-com:sql:SqlRowSet1">
+    <Id>92</Id>
+    <FirstName>Sanyam</FirstName>
+    <LastName>Kumar</LastName>
+    <City xsi:nil="true" />
+    <Country>India</Country>
+    <Phone xsi:nil="true" />
+  </Customer>
+</RAW_HEADER>

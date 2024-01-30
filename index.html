@@ -1,88 +1,290 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XML Viewer App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML Viewer</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      min-height: 100vh;
+      overflow: auto;
+      padding-bottom: 50px;
+    }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    header {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 20px;
+    }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
+    h1 {
+      margin: 0;
+      color: #333;
+    }
 
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-    </style>
+    p {
+      font-size: 16px;
+      color: #777;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .file-input-container {
+      display: flex;
+      align-items: center;
+      margin: 10px;
+    }
+
+    .file-input-label {
+      flex: 1;
+      font-size: 16px;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .file-input-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .notification {
+      position: fixed;
+      top: 10px;
+      right: -300px;
+      background-color: rgba(79, 79, 79, 0.8);
+      color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      z-index: 999;
+      transition: right 0.5s ease-in-out;
+    }
+
+    .notification.show {
+      right: 10px;
+    }
+
+    /* Style for the buttons */
+    button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Copy button style */
+    #copyTableBtn {
+      background-color: #ffc107;
+      border: 1px solid #ffc107;
+      color: #333;
+    }
+
+    /* Excel button style */
+    #openExcelBtn {
+      background-color: #008000;
+      border: 1px solid #008000;
+      color: #fff;
+    }
+  </style>
 </head>
+
 <body>
-    <input type="file" id="fileInput" />
-    <table id="xmlTable"></table>
+  <header>
+    <h1>XML Viewer</h1>
+    <p>A simple and elegant tool for viewing XML data in a tabular format.</p>
+  </header>
 
-    <script>
-        const { ipcRenderer } = require('electron');
+  <div class="button-container">
+    <div class="file-input-container">
+      <label for="fileInput" class="file-input-label">Choose a file...</label>
+      <input type="file" id="fileInput" style="display: none;" />
+      <button id="fileInputBtn" class="file-input-btn">Browse</button>
+    </div>
+    <div class="button-group">
+      <button id="copyTableBtn">Copy Table data</button>
+      <button id="openExcelBtn">Export to Excel</button>
+    </div>
+  </div>
 
-        document.getElementById('fileInput').addEventListener('change', (event) => {
-            const filePath = event.target.files[0].path;
-            ipcRenderer.send('file-selected', filePath);
-        });
+  <div id="xmlTableContainer"></div>
 
-        ipcRenderer.on('xml-data', (event, data) => {
-            console.log('Received XML Data:', data);
-            displayXmlAsTable(data);
-        });
+  <div class="notification" id="fileBrowseNotification">File browsed successfully!</div>
+  <div class="notification" id="exportToExcelNotification">Opening table in Excel...</div>
+  <div class="notification" id="copyTableNotification">Table data copied to clipboard!</div>
 
-        function displayXmlAsTable(xmlData) {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlData, 'application/xml');
+  <script>
+    const { ipcRenderer, clipboard } = require('electron');
+    const possibleTags = ['Books', 'Customer']; // Add other possible tags as needed
+    let foundTag = null;
+    let elements = null;
 
-            const table = document.getElementById('xmlTable');
-            table.innerHTML = ''; // Clear existing content
+    document.getElementById('fileInput').addEventListener('change', (event) => {
+      const filePath = event.target.files[0].path;
+      ipcRenderer.send('file-selected', filePath);
+      showNotification('File browsed successfully!', 'fileBrowseNotification');
+    });
 
-            const numRows = xmlDoc.querySelectorAll('book').length;
+    ipcRenderer.on('xml-data', (event, data) => {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data, 'text/xml');
 
-            // Create header row
-            const headerRow = table.insertRow(0);
-            const headerCells = ['id', 'author', 'title', 'genre', 'price', 'publish_date', 'description'];
+      const possibleTags = ['Books', 'Customer']; // Add other possible tags as needed
 
-            headerCells.forEach((cellName, index) => {
-                const headerCell = headerRow.insertCell(index);
-                headerCell.textContent = cellName;
-            });
+      for (const tagName of possibleTags) {
+        elements = xmlDoc.getElementsByTagName(tagName);
 
-            // Create data rows
-            for (let i = 0; i < numRows; i++) {
-                const dataRow = table.insertRow(i + 1);
-                const book = xmlDoc.querySelectorAll('book')[i];
-
-                headerCells.forEach((cellName, index) => {
-                    const dataCell = dataRow.insertCell(index);
-                    if (cellName === 'id') {
-                        dataCell.textContent = book.getAttribute('id');
-                    } else {
-                        dataCell.textContent = book.querySelector(cellName)?.textContent || '';
-                    }
-                });
-            }
+        if (elements.length > 0) {
+          console.log(`Uploaded file contains ${tagName} tag.`);
+          foundTag = tagName;
+          // Process the tag accordingly
+          break; // Exit the loop after finding the first matching tag
         }
-    </script>
+      }
+
+      console.log('>>>>>', elements)
+      // If no matching tag is found
+      if (!foundTag) {
+        console.log('Uploaded file does not contain any expected tags.');
+      }
+
+      const xmlTableContainer = document.getElementById('xmlTableContainer');
+      xmlTableContainer.innerHTML = ''; // Clear previous content
+
+      // Create a table element
+      const table = document.createElement('table');
+
+      // Create the header row
+      const headerRow = table.insertRow();
+      const headers = Array.from(elements[0].children).map((child) => child.tagName);
+
+      headers.forEach((headerText) => {
+        const headerCell = document.createElement('th');
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+      });
+
+      // Iterate over elements and create rows in the table
+      for (let i = 0; i < elements.length; i++) {
+        const book = elements[i];
+
+        const newRow = table.insertRow();
+
+        // Iterate over child elements of the current book and create cells
+        for (let j = 0; j < book.children.length; j++) {
+          const dataCell = newRow.insertCell(j);
+          dataCell.textContent = book.children[j].textContent;
+        }
+      }
+
+      xmlTableContainer.appendChild(table);
+
+      // Add event listeners for Excel and Copy buttons
+      document.getElementById('openExcelBtn').addEventListener('click', () => {
+        exportToExcel(table);
+        showNotification('Opening table in Excel...', 'exportToExcelNotification');
+      });
+
+      document.getElementById('copyTableBtn').addEventListener('click', () => {
+        copyToClipboard(table);
+        showNotification('Table data copied to clipboard!', 'copyTableNotification');
+      });
+    });
+
+    function copyToClipboard(table) {
+      const tableData = Array.from(table.rows).map((row) => Array.from(row.cells).map((cell) => cell.textContent));
+      const tableText = tableData.map((row) => row.join('\t')).join('\n');
+      clipboard.writeText(tableText);
+      console.log('Table content copied to clipboard:', tableText);
+    }
+
+    function exportToExcel() {
+      const tableData = Array.from(document.querySelectorAll('table tr')).map(row =>
+        Array.from(row.querySelectorAll('td, th')).map(cell => cell.textContent)
+      );
+
+      ipcRenderer.send('export-to-excel', tableData);
+    }
+
+    ipcRenderer.on('open-excel', (event, filePath) => {
+      ipcRenderer.send('open-excel', filePath);
+    });
+
+    document.getElementById('fileInputBtn').addEventListener('click', () => {
+      document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', (event) => {
+      const fileName = event.target.files[0].name;
+      document.querySelector('.file-input-label').textContent = fileName;
+    });
+
+    function showNotification(message, notificationId) {
+      const notification = document.getElementById(notificationId);
+      notification.textContent = message;
+      notification.classList.add('show');
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 5000); // Hide after 5 seconds
+    }
+
+  </script>
+
+  <footer>
+    Made with <span style="color: red;">❤️</span> by Sanyam and powered by Node.js
+  </footer>
+
 </body>
+
 </html>
