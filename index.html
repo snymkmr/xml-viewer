@@ -169,9 +169,10 @@
     let foundTag = null;
     let elements = null;
     let isExporting = false;
-
+    let fileName = '';
     document.getElementById('fileInput').addEventListener('change', (event) => {
       const filePath = event.target.files[0].path;
+      fileName = extractFileName(filePath);
       ipcRenderer.send('file-selected', filePath);
       showNotification('File browsed successfully!', 'fileBrowseNotification');
     });
@@ -260,10 +261,14 @@
         Array.from(row.querySelectorAll('td, th')).map(cell => cell.textContent)
       );
 
-      ipcRenderer.send('export-to-excel', tableData);
+      ipcRenderer.send('export-to-excel', tableData, fileName);
       showNotification('Opening table in Excel...', 'exportToExcelNotification');
       isExporting = false;
       toggleExportButton(false);
+    }
+
+    function extractFileName(filePath) {
+      return filePath.split('\\').pop().split('/').pop().replace(/\.[^/.]+$/, '');;
     }
 
     ipcRenderer.on('open-excel', (event, filePath) => {

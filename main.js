@@ -7,7 +7,7 @@ const fs = require('fs');
 const ExcelJS = require('exceljs');
 
 let mainWindow;
-
+let fileName;
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
@@ -53,7 +53,8 @@ ipcMain.on('open-excel', (event, filePath) => {
     shell.openPath(filePath);
 });
 
-ipcMain.on('export-to-excel', (event, tableData) => {
+ipcMain.on('export-to-excel', (event, tableData, fileName) => {
+    console.log("🚀 ~ ipcMain.on ~ fileName:", fileName)
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Sheet 1');
 
@@ -64,7 +65,7 @@ ipcMain.on('export-to-excel', (event, tableData) => {
 
     const excelFilePath = dialog.showSaveDialogSync(mainWindow, {
         title: 'Save Excel File',
-        defaultPath: 'table_data.xlsx',
+        defaultPath: fileName,
         filters: [{ name: 'Excel Files', extensions: ['xlsx'] }]
     });
 
