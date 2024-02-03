@@ -27,7 +27,6 @@ ipcRenderer.on('xml-data', (event, data) => {
     }
   }
 
-  console.log('>>>>>', elements)
   // If no matching tag is found
   if (!foundTag) {
     console.log('Uploaded file does not contain any expected tags.');
@@ -65,6 +64,49 @@ ipcRenderer.on('xml-data', (event, data) => {
   xmlTableContainer.appendChild(table);
 
   // Add event listeners for Excel and Copy buttons
+  document.getElementById('copyTableBtn').addEventListener('click', () => {
+    copyToClipboard(table);
+    showNotification('Table data copied to clipboard!', 'copyTableNotification');
+  });
+});
+
+ipcRenderer.on('csv-data', (event, data) => {
+  // Assuming data is a CSV string, you may need to adjust this based on your actual data format
+  const csvRows = data.split('\n').map(row => row.split(','));
+
+  // Assuming the first row contains headers
+  const headers = csvRows[0];
+
+  // Create a table element
+  const table = document.createElement('table');
+
+  // Create the header row
+  const headerRow = table.insertRow();
+  
+  headers.forEach((headerText) => {
+    const headerCell = document.createElement('th');
+    headerCell.textContent = headerText;
+    headerRow.appendChild(headerCell);
+  });
+
+  // Iterate over CSV rows (excluding the header row) and create rows in the table
+  for (let i = 1; i < csvRows.length; i++) {
+    const rowData = csvRows[i];
+
+    const newRow = table.insertRow();
+
+    // Iterate over columns in the current row and create cells
+    rowData.forEach((cellText, j) => {
+      const dataCell = newRow.insertCell(j);
+      dataCell.textContent = cellText;
+    });
+  }
+
+  const tableContainer = document.getElementById('xmlTableContainer');
+  tableContainer.innerHTML = ''; // Clear previous content
+  tableContainer.appendChild(table);
+
+  // Add event listeners for Copy buttons
   document.getElementById('copyTableBtn').addEventListener('click', () => {
     copyToClipboard(table);
     showNotification('Table data copied to clipboard!', 'copyTableNotification');

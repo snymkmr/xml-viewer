@@ -33,15 +33,29 @@ app.on('ready', createWindow);
 
 ipcMain.on('file-selected', (event, filePath) => {
     console.log(`File selected: ${filePath}`);
+    
+    // Extract the file extension from the filePath
+    const fileExtension = path.extname(filePath).toLowerCase();
+
+    // Read the file content
     fs.readFile(filePath, 'utf-8', (err, data) => {
         if (err) {
             console.error(`Error reading file: ${err.message}`);
             event.sender.send('xml-data', `Error reading file: ${err.message}`);
         } else {
-            event.sender.send('xml-data', data);
+            // Determine the file type based on the extension
+            if (fileExtension === '.xml') {
+                event.sender.send('xml-data', data);
+            } else if (fileExtension === '.csv') {
+                event.sender.send('csv-data', data);
+            } else {
+                console.error('Unsupported file type');
+                event.sender.send('unsupported-file-type', 'Unsupported file type');
+            }
         }
     });
 });
+
 
 ipcMain.on('copy-to-clipboard', (event, tableData) => {
     const clipboardData = tableData.map(row => row.join('\t')).join('\n');
