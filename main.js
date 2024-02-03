@@ -54,9 +54,8 @@ ipcMain.on('open-excel', (event, filePath) => {
 });
 
 ipcMain.on('export-to-excel', (event, tableData, fileName) => {
-    console.log("🚀 ~ ipcMain.on ~ fileName:", fileName)
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('Sheet 1');
+    const worksheet = workbook.addWorksheet(fileName);
 
     // Add the table data to the worksheet
     tableData.forEach(row => {
