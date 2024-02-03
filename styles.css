@@ -1,0 +1,130 @@
+/* styles.css */
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  min-height: 100vh;
+  overflow: auto;
+  padding-bottom: 50px;
+}
+
+header {
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+  color: #333;
+}
+
+p {
+  font-size: 16px;
+  color: #777;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.file-input-container {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.file-input-label {
+  flex: 1;
+  font-size: 16px;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-input-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.notification {
+  position: fixed;
+  top: 10px;
+  right: -300px;
+  background-color: rgba(79, 79, 79, 0.8);
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 999;
+  transition: right 0.5s ease-in-out;
+}
+
+.notification.show {
+  right: 10px;
+}
+
+/* Style for the buttons */
+button {
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Copy button style */
+#copyTableBtn {
+  background-color: #ffc107;
+  border: 1px solid #ffc107;
+  color: #333;
+}
+
+/* Excel button style */
+#exportButton {
+  background-color: #008000;
+  border: 1px solid #008000;
+  color: #fff;
+}

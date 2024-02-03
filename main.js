@@ -8,6 +8,7 @@ const ExcelJS = require('exceljs');
 
 let mainWindow;
 let fileName;
+
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
