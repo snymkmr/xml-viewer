@@ -1,5 +1,3 @@
-// main.js
-
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const path = require('path');
 const url = require('url');
@@ -56,6 +54,7 @@ ipcMain.on('open-excel', (event, filePath) => {
 
 ipcMain.on('export-to-excel', (event, tableData, fileName) => {
     const workbook = new ExcelJS.Workbook();
+    if (!fileName) fileName = 'Untitled';
     const worksheet = workbook.addWorksheet(fileName);
 
     // Add the table data to the worksheet
