@@ -18,6 +18,9 @@ function createWindow() {
         }
     });
 
+    mainWindow.maximizable = true;  // Enable maximizable
+    mainWindow.maximize();  // Maximize the window
+
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
@@ -33,7 +36,7 @@ app.on('ready', createWindow);
 
 ipcMain.on('file-selected', (event, filePath) => {
     console.log(`File selected: ${filePath}`);
-    
+
     // Extract the file extension from the filePath
     const fileExtension = path.extname(filePath).toLowerCase();
 
