@@ -65,8 +65,7 @@ footer {
   width: 100%;
   text-align: center;
   background-color: #f2f2f2;
-  padding: 10px;
-  height: 5%;
+  padding: 5px;
 }
 
 .button-container {
@@ -153,7 +152,6 @@ button {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  padding: 10px;
   transition: background-color 0.3s ease;
   position: relative;
 }

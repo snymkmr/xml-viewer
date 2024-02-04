@@ -34,10 +34,7 @@ ipcRenderer.on('xml-data', (event, data) => {
   }
 
   // After appending the table content
-  const tableContainer = document.getElementById('xmlTableContainer');
-  const nothingToSeeHere = document.getElementById('nothingToSeeHere');
-  tableContainer.classList.toggle('empty', tableContainer.children.length === 0);
-
+  const xmlTableContainer = document.getElementById('xmlTableContainer');
   xmlTableContainer.innerHTML = ''; // Clear previous content
 
   // Create a table element
@@ -73,6 +70,9 @@ ipcRenderer.on('xml-data', (event, data) => {
     copyToClipboard(table);
     showNotification('Table data copied to clipboard!', 'copyTableNotification');
   });
+
+  // Hide the table container if no data
+  xmlTableContainer.style.display = elements.length > 0 ? 'block' : 'none';
 });
 
 ipcRenderer.on('csv-data', (event, data) => {
