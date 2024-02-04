@@ -33,7 +33,11 @@ ipcRenderer.on('xml-data', (event, data) => {
     console.log('Uploaded file does not contain any expected tags.');
   }
 
-  const xmlTableContainer = document.getElementById('xmlTableContainer');
+  // After appending the table content
+  const tableContainer = document.getElementById('xmlTableContainer');
+  const nothingToSeeHere = document.getElementById('nothingToSeeHere');
+  tableContainer.classList.toggle('empty', tableContainer.children.length === 0);
+
   xmlTableContainer.innerHTML = ''; // Clear previous content
 
   // Create a table element

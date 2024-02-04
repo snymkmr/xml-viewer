@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   overflow: hidden;
   height: 100%;
   margin: 0;
@@ -53,7 +54,7 @@ th {
 
 tbody {
   display: block;
-  max-height: 500px; /* Adjust the max height as needed */
+  max-height: 500px;
   overflow-y: auto;
 }
 
@@ -144,10 +145,44 @@ button {
   color: #fff;
 }
 
+/* Add this to your CSS */
 #xmlTableContainer {
   overflow-y: auto;
-  margin-top: 20px;
-  overflow: hidden;
+  max-height: 80vh;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+#xmlTableContainer:hover {
+  background-color: #f9f9f9;
+}
+
+#nothingToSeeHere {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px;
+}
+
+#nothingToSeeHere img {
+  max-width: 100%;
+  height: auto;
+}
+
+#xmlTableContainer.empty #nothingToSeeHere {
+  display: block;
+}
+
+#xmlTableContainer:not(.empty) #nothingToSeeHere {
+  display: none;
 }
 
 tbody::-webkit-scrollbar-track {
