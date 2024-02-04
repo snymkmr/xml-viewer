@@ -1,5 +1,6 @@
 const { ipcRenderer, clipboard } = require('electron');
 let possibleTags = ['Books', 'Customer']; // Add other possible tags as needed
+const Papa = require('papaparse');
 let foundTag = null;
 let elements = null;
 let isExporting = false;
@@ -71,45 +72,38 @@ ipcRenderer.on('xml-data', (event, data) => {
 });
 
 ipcRenderer.on('csv-data', (event, data) => {
-  // Assuming data is a CSV string, you may need to adjust this based on your actual data format
-  const csvRows = data.split('\n').map(row => row.split(','));
+  Papa.parse(data, {
+    complete: (result) => {
+      const headers = result.data[0];
 
-  // Assuming the first row contains headers
-  const headers = csvRows[0];
+      const table = document.createElement('table');
+      const headerRow = table.insertRow();
 
-  // Create a table element
-  const table = document.createElement('table');
+      headers.forEach((headerText) => {
+        const headerCell = document.createElement('th');
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+      });
 
-  // Create the header row
-  const headerRow = table.insertRow();
-  
-  headers.forEach((headerText) => {
-    const headerCell = document.createElement('th');
-    headerCell.textContent = headerText;
-    headerRow.appendChild(headerCell);
-  });
+      for (let i = 1; i < result.data.length; i++) {
+        const rowData = result.data[i];
+        const newRow = table.insertRow();
 
-  // Iterate over CSV rows (excluding the header row) and create rows in the table
-  for (let i = 1; i < csvRows.length; i++) {
-    const rowData = csvRows[i];
+        rowData.forEach((cellText, j) => {
+          const dataCell = newRow.insertCell(j);
+          dataCell.textContent = cellText;
+        });
+      }
 
-    const newRow = table.insertRow();
+      const tableContainer = document.getElementById('xmlTableContainer');
+      tableContainer.innerHTML = '';
+      tableContainer.appendChild(table);
 
-    // Iterate over columns in the current row and create cells
-    rowData.forEach((cellText, j) => {
-      const dataCell = newRow.insertCell(j);
-      dataCell.textContent = cellText;
-    });
-  }
-
-  const tableContainer = document.getElementById('xmlTableContainer');
-  tableContainer.innerHTML = ''; // Clear previous content
-  tableContainer.appendChild(table);
-
-  // Add event listeners for Copy buttons
-  document.getElementById('copyTableBtn').addEventListener('click', () => {
-    copyToClipboard(table);
-    showNotification('Table data copied to clipboard!', 'copyTableNotification');
+      document.getElementById('copyTableBtn').addEventListener('click', () => {
+        copyToClipboard(table);
+        showNotification('Table data copied to clipboard!', 'copyTableNotification');
+      });
+    }
   });
 });
 
